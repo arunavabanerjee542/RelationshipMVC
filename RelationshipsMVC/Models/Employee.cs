@@ -10,5 +10,8 @@ namespace RelationshipsMVC.Models
         public int EmployeeId { get; set; }
         public string Ename { get; set; }
         public virtual ICollection<EmployeeProject> Projects { get; set; }
+
+        public int DepartmentId { get; set; }
+        public virtual Department Departments { get; set; }
     }
 }

@@ -18,6 +18,38 @@ namespace RelationshipsMVC.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("RelationshipsMVC.Models.Department", b =>
+                {
+                    b.Property<int>("DepartmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DeptName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DepartmentId");
+
+                    b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            DepartmentId = 1,
+                            DeptName = "HR"
+                        },
+                        new
+                        {
+                            DepartmentId = 2,
+                            DeptName = "Sales"
+                        },
+                        new
+                        {
+                            DepartmentId = 3,
+                            DeptName = "Software Developement"
+                        });
+                });
+
             modelBuilder.Entity("RelationshipsMVC.Models.Employee", b =>
                 {
                     b.Property<int>("EmployeeId")
@@ -25,10 +57,15 @@ namespace RelationshipsMVC.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Ename")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmployeeId");
+
+                    b.HasIndex("DepartmentId");
 
                     b.ToTable("Employees");
 
@@ -36,16 +73,19 @@ namespace RelationshipsMVC.Migrations
                         new
                         {
                             EmployeeId = 1,
+                            DepartmentId = 1,
                             Ename = "Ram"
                         },
                         new
                         {
                             EmployeeId = 2,
+                            DepartmentId = 2,
                             Ename = "Shiv"
                         },
                         new
                         {
                             EmployeeId = 3,
+                            DepartmentId = 2,
                             Ename = "Krishna"
                         });
                 });
@@ -107,6 +147,15 @@ namespace RelationshipsMVC.Migrations
                             ProjectId = 2,
                             Pname = "Student Management"
                         });
+                });
+
+            modelBuilder.Entity("RelationshipsMVC.Models.Employee", b =>
+                {
+                    b.HasOne("RelationshipsMVC.Models.Department", "Departments")
+                        .WithMany("Employees")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("RelationshipsMVC.Models.EmployeeProject", b =>

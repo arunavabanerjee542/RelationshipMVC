@@ -16,14 +16,23 @@ namespace RelationshipsMVC.Models
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
+
             mb.Entity<EmployeeProject>().HasKey(
                 k => new { k.EmployeeId, k.ProjectId }
                 );
 
+            mb.Entity<Department>().HasData(
+                new Department() { DepartmentId=1,DeptName="HR"},
+                 new Department() { DepartmentId = 2, DeptName = "Sales" },
+                  new Department() { DepartmentId = 3, DeptName = "Software Developement" }
+                );
+
+            
+            
             mb.Entity<Employee>().HasData(
-                   new Employee() { EmployeeId = 1, Ename = "Ram" },
-                   new Employee() { EmployeeId = 2, Ename = "Shiv" },
-                   new Employee() { EmployeeId = 3, Ename = "Krishna" });
+                   new Employee() { EmployeeId = 1, Ename = "Ram",DepartmentId=1 },
+                   new Employee() { EmployeeId = 2, Ename = "Shiv",DepartmentId=2 },
+                   new Employee() { EmployeeId = 3, Ename = "Krishna" ,DepartmentId=2});
 
 
             mb.Entity<Project>().HasData(
@@ -35,12 +44,14 @@ namespace RelationshipsMVC.Models
                 new EmployeeProject() { EmployeeId = 1, ProjectId = 1 },
                 new EmployeeProject() { EmployeeId = 1, ProjectId = 2 },
                 new EmployeeProject() { EmployeeId = 2, ProjectId = 2 });
+           
              
         }
 
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Department> Departments { get; set; }
 
     }
 }
