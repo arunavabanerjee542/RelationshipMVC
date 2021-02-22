@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Employee>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">EmployeeId</th>
+            <th scope="col">Name</th>
+            <th scope="col">Department Name</th>
+            <th scope="col">Allocated Projects</th>
+        </tr>
+    </thead>
+
+    @foreach (var employee in Model)
+    {
+<tr>
+    
+    <td> @employee.EmployeeId</td>
+    <td> @employee.Ename</td>
+    <td> @employee.Departments.DeptName</td>
+    @foreach (var project in employee.Projects.Where(p => p.EmployeeId == employee.EmployeeId))
+    {
+        <td> @project?.Projects?.Pname</td>
+    }
+</tr>
+
+    }
+            
+
+    </table>

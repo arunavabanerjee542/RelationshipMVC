@@ -52,6 +52,7 @@ namespace RelationshipsMVC.Models
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<EmployeeProject> EmployeeProjects { get; set; }
 
     }
 }

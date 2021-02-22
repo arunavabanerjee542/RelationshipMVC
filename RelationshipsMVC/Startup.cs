@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RelationshipsMVC.Models;
+using RelationshipsMVC.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,9 @@ namespace RelationshipsMVC
             services.AddControllersWithViews();
             services.AddDbContext<RelationshipDb>(op => op.UseSqlServer
             (Configuration["ConnectionStrings:RelationshipsDbConnection"]) );
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
