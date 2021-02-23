@@ -23,19 +23,10 @@ namespace RelationshipsMVC.Repository
                 Ename = empView.Ename,
                 DepartmentId = empView.DepartmentId,                         
             };
+            _context.Employees.Add(emp);
             _context.SaveChanges();
-             
-            foreach(var projectId in empView.ProjectIds)
-            {
-                _context.EmployeeProjects.Add(new EmployeeProject()
-                {
-                    ProjectId = projectId.ProjectId,
-                    EmployeeId = emp.EmployeeId
-                }) ;
-                _context.SaveChanges();
-            }
 
-            return new Employee();
+            return emp;
         }
 
         public IEnumerable<Employee> GetEmployees()

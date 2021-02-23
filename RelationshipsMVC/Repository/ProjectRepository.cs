@@ -1,4 +1,5 @@
 ﻿using RelationshipsMVC.Models;
+using RelationshipsMVC.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,17 @@ namespace RelationshipsMVC.Repository
             _context = context;
         }
 
+        public Project AddProject(ProjectViewModel projectView)
+        {
+            var project = new Project()
+            {
+                Pname = projectView.Pname
+            };
+
+            _context.Projects.Add(project);
+            _context.SaveChanges();
+            return project;      
+        }
 
         public IEnumerable<Project> GetProjects()
         {

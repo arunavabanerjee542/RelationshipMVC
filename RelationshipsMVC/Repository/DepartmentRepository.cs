@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RelationshipsMVC.Models;
+using RelationshipsMVC.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,14 @@ namespace RelationshipsMVC.Repository
             _context = context;
         }
 
+        public Department AddDepartment(DepartmentModel deptModel)
+        {
+            var dept = new Department() { DeptName = deptModel.DeptName };
+            _context.Departments.Add(dept);
+            _context.SaveChanges();
+            return dept;
+
+        }
 
         public IEnumerable<Department> GetDepartments()
         {

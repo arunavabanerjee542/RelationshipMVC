@@ -1,0 +1,18 @@
+﻿
+
+
+<form asp-action="AddEmployeeProject" method="post">
+    @Html.DropDownList("EmployeeIds", "")
+
+    <ul>
+        @foreach (var empProj in ViewBag.ProjectIds)
+        {
+        <li>            
+            <input type="checkbox" name="ProjectIds" value="@empProj.ProjectId" /> @empProj.Pname
+        </li>
+        }
+    </ul>
+
+    <input type="submit" value="Submit" />
+
+</form>

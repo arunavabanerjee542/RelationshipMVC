@@ -2,16 +2,15 @@
 
 
 <form asp-action="Add" method="post">
-
-    <input asp-for="Ename" />
+    
+    <div class="form-floating">
+        <label asp-for="Ename"> EmployeeName</label>
+        <input asp-for="Ename" />
+        </div>
    
-    <select asp-for="DepartmentId"
-            asp-items="@(new SelectList(Model.DepartmentList,"DepartmentId","DeptName"))">
-        <option>Please select one</option>
-    </select>
-
     <div>
-        
-    </div>
+    @Html.DropDownList("DepartmentIds","Select Department")
+        </div>
+    <input type="submit" value="Submit" />
 
 </form>

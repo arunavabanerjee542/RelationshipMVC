@@ -1,4 +1,5 @@
 ﻿using RelationshipsMVC.Models;
+using RelationshipsMVC.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace RelationshipsMVC.Repository
     public interface IProjectRepository
     {
         IEnumerable<Project> GetProjects();
+        Project AddProject(ProjectViewModel projectView);
     }
 }

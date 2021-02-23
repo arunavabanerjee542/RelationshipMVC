@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace RelationshipsMVC.Repository
 {
-    public interface IDepartmentRepository
+    public interface IEmployeeProjectRepository
     {
-        IEnumerable<Department> GetDepartments();
-        public Department AddDepartment(DepartmentModel deptModel);
+        EmployeeProject AddEmployeeProject(EmployeeProjectViewModel model); 
     }
 }

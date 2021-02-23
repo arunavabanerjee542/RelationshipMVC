@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RelationshipsMVC.Models;
 using RelationshipsMVC.Repository;
 using RelationshipsMVC.ViewModel;
@@ -37,20 +38,24 @@ namespace RelationshipsMVC.Controllers
         [HttpGet]
         public IActionResult Add()
         {
+            /*
             var empViewModel = new EmployeeViewModel()
             {
                 DepartmentList = _departmentRepository.GetDepartments(),
                 ProjectList = _projectRepository.GetProjects()
             };
+            */
+            ViewBag.DepartmentIds = new SelectList(_departmentRepository.GetDepartments(), "DepartmentId", "DeptName");
             
-            return View(empViewModel);
+            return View();
         }
 
         [HttpPost]
-        public IActionResult Add(EmployeeViewModel employeeModel)
+        public IActionResult Add(EmployeeViewModel employeeModel, int DepartmentIds)
         {
-            //_employeeRepository.Add(employee);
-            return Redirect("Home/Index");
+            employeeModel.DepartmentId = DepartmentIds;
+            _employeeRepository.AddEmployeeWithProjects(employeeModel);
+            return RedirectToAction("Index");
         }
 
     }

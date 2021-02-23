@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Employee>
 
 
-<table class="table  table table-bordered border-primary">
+<table class="table">
     <thead>
         <tr>
             <th scope="col">EmployeeId</th>
@@ -20,11 +20,7 @@
     <td> @employee.Departments.DeptName</td>
     @foreach (var project in employee.Projects.Where(p => p.EmployeeId == employee.EmployeeId))
     {
-<td>
-    <div class="col-4">
-        @project?.Projects?.Pname
-    </div>
-</td>
+        <td> @project?.Projects?.Pname</td>
     }
 </tr>
 

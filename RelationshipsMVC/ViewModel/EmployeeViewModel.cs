@@ -10,8 +10,5 @@ namespace RelationshipsMVC.ViewModel
     {
         public string Ename { get; set; } 
         public int DepartmentId { get; set; }
-        public ICollection<ProjectIdViewModel> ProjectIds { get; set; }
-        public IEnumerable<Department> DepartmentList { get; set; }
-        public IEnumerable<Project> ProjectList { get; set; }
     }
 }
