@@ -43,5 +43,12 @@ namespace RelationshipsMVC.Controllers
             return RedirectToAction("Index","Home");
         }
 
+        public IActionResult DepartmentDetails()
+        {
+           var dept = _departmentRepository.GetDepartments();
+            return View(dept);
+        }
+
+
     }
 }

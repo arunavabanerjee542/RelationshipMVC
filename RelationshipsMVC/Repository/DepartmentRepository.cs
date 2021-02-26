@@ -28,7 +28,9 @@ namespace RelationshipsMVC.Repository
 
         public IEnumerable<Department> GetDepartments()
         {
-            return _context.Departments.ToList();
+            return _context.Departments
+                .Include(d => d.Employees);
+               
         }
     }
 }
