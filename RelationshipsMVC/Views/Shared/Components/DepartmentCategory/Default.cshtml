@@ -1,4 +1,14 @@
-﻿@model IEnumerable<Department>
+﻿@model IEnumerable<string>
 
+@foreach(var item in Model)
+{
 
-<h1>HI JAHVCAJCHBAKJCBKCJB </h1>
+    <a class="btn btn-block
+@(item.Equals(ViewBag.SelectedDept) ? "btn-primary": "btn-outline-secondary") "
+       asp-action="Index" asp-controller="Department"
+       asp-route-category="@item" >
+        @item</a>
+
+        
+}
+

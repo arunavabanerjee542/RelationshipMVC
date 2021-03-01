@@ -1,5 +1,50 @@
-﻿<a asp-action="DepartmentDetails"> SHOW All Department DETAILS </a>
-<br/>
+﻿@model DepartmentViewModel
+
+
+<a asp-action="DepartmentDetails"> SHOW All Department DETAILS </a>
+<br />
 <a asp-action="AddDepartment">Add Department</a>
 
 <vc:department-category />
+
+@if (Model.Departments != null)
+{
+
+<table class="table  table table-bordered border-primary">
+    <thead>
+        <tr>
+            <th scope="col">DepartmentId</th>
+            <th scope="col">Employee Name</th>
+        </tr>
+    </thead>
+
+    @foreach (var dept in Model.Departments)
+    {
+
+        @foreach (var employee in dept.Employees)
+        {
+            <tr>
+
+                <td> @dept.DepartmentId</td>
+
+
+                <td>
+                    <div class="col-4">
+                        @employee.Ename
+                    </div>
+                </td>
+                </tr>
+
+                }
+           
+
+        }
+
+
+    </table>
+
+}
+
+<div page-model="@Model.PagingInfo"  action-name="Index" ></div>
+
+

@@ -57,9 +57,22 @@ namespace RelationshipsMVC
 
             app.UseEndpoints(endpoints =>
             {
+
+                endpoints.MapControllerRoute("catpage",
+                    "{category}/{pagesize:int}",
+                    new { Controller = "Department", Action = "Index", pagesize = 1 }
+                    );
+
+                endpoints.MapControllerRoute("DepartmentName",
+                    "{category}",
+                    new { Controller = "Department", Action = "Index" , pagesize =1});
+
+                endpoints.MapDefaultControllerRoute();
+                /*
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                */
             });
         }
     }
