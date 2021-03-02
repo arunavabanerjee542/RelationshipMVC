@@ -33,6 +33,7 @@ namespace RelationshipsMVC
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IEmployeeProjectRepository, EmployeeProjectRepository>();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +69,7 @@ namespace RelationshipsMVC
                     new { Controller = "Department", Action = "Index" , pagesize =1});
 
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
                 /*
                 endpoints.MapControllerRoute(
                     name: "default",

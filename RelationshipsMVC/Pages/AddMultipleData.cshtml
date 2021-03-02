@@ -1,0 +1,44 @@
+﻿@page
+@model RelationshipsMVC.Pages.AddMultipleDataModel
+@{
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    ViewBag.AllDepartments = Model.GetDept();
+}
+<h1> ADD EMPLOYEE</h1>
+<br/>
+<form method="post" asp-page-handler="EmployeeModelHandler">
+    <div class="mb-3">
+        <label class="form-label" asp-for="Employee.Ename"> Name </label>
+        <input class="form-control form-control-lg" asp-for="Employee.Ename" />
+    </div>
+
+    <div class="mb-3"> 
+        <select asp-for="Employee.DepartmentId"
+                asp-items="@(new SelectList(ViewBag.AllDepartments,
+    "DepartmentId","DeptName"))">
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary btn-lg" value="Add">
+            ADD
+        </button>
+    </div>
+    <hr />
+</form>
+
+<h1> ADD DEPARTMENT</h1>
+<br/>
+<form method="post" asp-page-handler="DepartmentModelHandler">
+    <div class="mb-3">
+        <label class="form-label" asp-for="Department.DeptName"> DepartmentName </label>
+        <input class="form-control form-control-lg" asp-for="Department.DeptName" />
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary btn-lg" value="Add">
+            ADD
+        </button>
+    </div>
+    <hr/>
+</form>
